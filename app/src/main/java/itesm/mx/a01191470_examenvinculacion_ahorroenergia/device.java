@@ -6,62 +6,73 @@ package itesm.mx.a01191470_examenvinculacion_ahorroenergia;
 
 //Objeto, consumo, marca, horas, una foto y la fecha de captura.
 public class device {
-    private String name;
-    private int consumption;
-    private String brand;
-    private int time;
-    private int imageId;
 
-    public device(String name, int consumption, String brand, int time, int imageId) {
-        this.name = name;
-        this.consumption = consumption;
-        this.brand = brand;
-        this.time = time;
-        this.imageId = imageId;
+    private int _id;
+    private int _consumption;
+    private int _hours;
+    private String _name;
+    private String _brand;
+    private byte[] _image;
+
+    public device() {
+
     }
 
-    public device(String name, int consumption) {
-        this.name = name;
-        this.consumption = consumption;
+    public device(int _consumption, int _hours, String _name,
+                  String _brand, byte[] _image) {
+
+        this._consumption = _consumption;
+        this._hours = _hours;
+        this._name = _name;
+        this._brand = _brand;
+        this._image = _image;
     }
 
-    public String getName() {
-        return name;
+    public int get_id() {
+        return _id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void set_id(int _id) {
+        this._id = _id;
     }
 
-    public int getConsumption() {
-        return consumption;
+    public int get_consumption() {
+        return _consumption;
     }
 
-    public void setConsumption(int consumption) {
-        this.consumption = consumption;
+    public byte[] get_image() {
+        return _image;
     }
 
-    public String getBrand() {
-        return brand;
+    public void set_image(byte[] _image) {
+        this._image = _image;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public int get_hours() {
+        return _hours;
     }
 
-    public int getTime() {
-        return time;
+    public void set_hours(int _hours) {
+        this._hours = _hours;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void set_consumption(int _consumption) {
+        this._consumption = _consumption;
     }
 
-    public int getImageId() {
-        return imageId;
+    public String get_name() {
+        return _name;
     }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void set_name(String _name) {
+        this._name = _name;
+    }
+
+    public String get_brand() {
+        return _brand;
+    }
+
+    public void set_brand(String _brand) {
+        this._brand = _brand;
     }
 }

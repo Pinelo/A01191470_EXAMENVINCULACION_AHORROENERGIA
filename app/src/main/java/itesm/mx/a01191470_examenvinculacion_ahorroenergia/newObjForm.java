@@ -10,16 +10,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+
 public class newObjForm extends AppCompatActivity {
 
+    int deviceConsumption;
+    String deviceName;
+    Bitmap photo;
+
     TextView nameTv;
+    TextView brandET;
     ImageView cameraIV;
     NumberPicker hoursNP;
     Button takePicBT;
+    Button finishBT;
+    DeviceOperations dbo;
+
     static final int REQUEST_IMAGE_CAPTURE= 1;
 
 
@@ -29,8 +40,12 @@ public class newObjForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_obj_form);
 
+        dbo = new DeviceOperations(this);
+
         nameTv = (TextView)findViewById(R.id.deviceNameTV);
+        brandET = (EditText)findViewById(R.id.addObjMarcaET);
         cameraIV = (ImageView)findViewById(R.id.cameraIV);
+        finishBT = (Button)findViewById(R.id.addObjFinishBT);
         takePicBT = (Button)findViewById(R.id.picBT);
         hoursNP = (NumberPicker)findViewById(R.id.hoursNP);
 
@@ -39,8 +54,8 @@ public class newObjForm extends AppCompatActivity {
         hoursNP.setWrapSelectorWheel(false);
 
         Intent intent = getIntent();
-        String deviceName = intent.getStringExtra("name");
-        int deviceConsumption = intent.getIntExtra("consumption", 0);
+        deviceName = intent.getStringExtra("name");
+        deviceConsumption = intent.getIntExtra("consumption", 0);
         nameTv.setText(deviceName);
 
         takePicBT.setOnClickListener(
@@ -52,9 +67,36 @@ public class newObjForm extends AppCompatActivity {
                 }
         );
 
+        finishBT.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addDevice(v);
+                    }
+                }
+        );
+
     }
 
-//    checa si el usuario tiene una camara
+    private void addDevice(View v) {
+
+//        private int _consumption;
+//        private int _hours;
+//        private String _name;
+//        private String _brand;
+//        private byte[] _image;
+        String deviceBrand = brandET.getText().toString();
+        int hours = hoursNP.getValue();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] imageBytes = stream.toByteArray();
+
+        device newDevice = new device(deviceConsumption, hours, deviceName, deviceBrand, imageBytes);
+        dbo.addDevice(newDevice);
+        finish();
+    }
+
+    //    checa si el usuario tiene una camara
     private boolean hasCamera() {
         return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
     }
@@ -70,7 +112,7 @@ public class newObjForm extends AppCompatActivity {
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap photo = (Bitmap)extras.get("data");
+            photo = (Bitmap)extras.get("data");
             cameraIV.setImageBitmap(photo);
         }
 
