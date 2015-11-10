@@ -1,16 +1,30 @@
 package itesm.mx.a01191470_examenvinculacion_ahorroenergia;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class newObjForm extends AppCompatActivity {
+
+    TextView nameTv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_obj_form);
+
+        nameTv = (TextView)findViewById(R.id.deviceNameTV);
+
+        Intent intent = getIntent();
+        String deviceName = intent.getStringExtra("name");
+        int deviceConsumption = intent.getIntExtra("consumption", 0);
+
+        nameTv.setText(deviceName);
+
     }
 
     @Override

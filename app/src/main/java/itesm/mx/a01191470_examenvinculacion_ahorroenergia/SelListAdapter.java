@@ -32,8 +32,5 @@ public class SelListAdapter extends ArrayAdapter{
         wattsVTV.setText(Integer.toString(device_watts[position]));
 
         return rowView;
-
-
-
     }
 }

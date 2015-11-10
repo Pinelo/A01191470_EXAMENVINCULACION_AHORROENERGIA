@@ -1,5 +1,6 @@
 package itesm.mx.a01191470_examenvinculacion_ahorroenergia;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,29 +14,38 @@ import android.widget.Toast;
 public class addObjActivity extends AppCompatActivity {
 
     ListView selDeviceLV;
+    String[] devices;
+    int[] values;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_obj);
 
-        String[] devices = getApplicationContext().getResources()
+        devices = getApplicationContext().getResources()
                 .getStringArray(R.array.electrodomestics);
 
-        int[] values = getApplicationContext().getResources()
+        values = getApplicationContext().getResources()
                 .getIntArray(R.array.watts);
 
 
-        ListAdapter selectionListAdapter = new SelListAdapter(this, devices, values);
+        final ListAdapter selectionListAdapter = new SelListAdapter(this, devices, values);
 
         selDeviceLV = (ListView)findViewById(R.id.addObjLV);
         selDeviceLV.setAdapter(selectionListAdapter);
 
+
+//        Se despliega la actividad donde aparece el formulario para agregar ese producto.
         selDeviceLV.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(addObjActivity.this, "string", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(addObjActivity.this, newObjForm.class);
+                        String deviceName = devices[position];
+                        int consumption = values[position];
+                        intent.putExtra("name", deviceName);
+                        intent.putExtra("consumption", consumption);
+                        startActivity(intent);
                     }
                 }
         );
