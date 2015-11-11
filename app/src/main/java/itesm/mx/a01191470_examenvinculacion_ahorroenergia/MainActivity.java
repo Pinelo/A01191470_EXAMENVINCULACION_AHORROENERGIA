@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         addBT = (Button)findViewById(R.id.addBT);
         listBT = (Button)findViewById(R.id.listBT);
 

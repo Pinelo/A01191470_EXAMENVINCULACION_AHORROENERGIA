@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -59,6 +61,15 @@ public class DeviceAdapter extends ArrayAdapter{
         wattsPHTV.setText(Integer.toString(device.get_consumption()));
         String total_watts = Integer.toString((device.get_consumption() * device.get_hours()));
         totalWattsTV.setText(total_watts);
+
+        long yourmilliseconds = device.get_time();
+        SimpleDateFormat sd = new SimpleDateFormat("MMM dd,yyyy");
+        SimpleDateFormat st = new SimpleDateFormat("HH:mm");
+        Date resultdate = new Date(yourmilliseconds);
+
+        dateTV.setText(sd.format(resultdate));
+        timeTV.setText(st.format(resultdate));
+
         return row;
     }
 }

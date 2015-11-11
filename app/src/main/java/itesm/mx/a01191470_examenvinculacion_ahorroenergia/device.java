@@ -10,6 +10,7 @@ public class device {
     private int _id;
     private int _consumption;
     private int _hours;
+    private long _time;
     private String _name;
     private String _brand;
     private byte[] _image;
@@ -18,14 +19,21 @@ public class device {
 
     }
 
-    public device(int _consumption, int _hours, String _name,
-                  String _brand, byte[] _image) {
-
+    public device(int _consumption, int _hours, long _time, String _name, String _brand, byte[] _image) {
         this._consumption = _consumption;
         this._hours = _hours;
+        this._time = _time;
         this._name = _name;
         this._brand = _brand;
         this._image = _image;
+    }
+
+    public long get_time() {
+        return _time;
+    }
+
+    public void set_time(long _time) {
+        this._time = _time;
     }
 
     public int get_id() {

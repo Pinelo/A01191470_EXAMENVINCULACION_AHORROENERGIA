@@ -90,7 +90,7 @@ public class newObjForm extends AppCompatActivity {
         photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] imageBytes = stream.toByteArray();
 
-        device newDevice = new device(deviceConsumption, hours, deviceName, deviceBrand, imageBytes);
+        device newDevice = new device(deviceConsumption, hours, System.currentTimeMillis(), deviceName, deviceBrand, imageBytes);
         dbo.addDevice(newDevice);
         Toast.makeText(getApplicationContext(), "Operación Exitosa", Toast.LENGTH_LONG).show();
         finish();

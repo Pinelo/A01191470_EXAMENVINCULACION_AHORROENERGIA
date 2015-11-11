@@ -26,6 +26,7 @@ public class DeviceOperations {
     private static final String COLUMN_CONSUMPTION = "consumption";
     private static final String COLUMN_HOURS = "hours";
     private static final String COLUMN_PIC = "pictures";
+    private static final String COLUMN_DATETIME = "datetime";
 
     public DeviceOperations(Context context) {
         dbhandler = DBHandler.getInstace(context);
@@ -40,6 +41,7 @@ public class DeviceOperations {
             values.put(COLUMN_CONSUMPTION, device.get_consumption());
             values.put(COLUMN_HOURS, device.get_hours());
             values.put(COLUMN_PIC, device.get_image());
+            values.put(COLUMN_DATETIME, device.get_time());
 
             db.insert(TABLE_PRODUCT, null, values);
             Log.d("tag", "Product added successfully");
@@ -62,9 +64,10 @@ public class DeviceOperations {
             String brand = cursor.getString(cursor.getColumnIndex(COLUMN_BRAND));
             int consumption = cursor.getInt(cursor.getColumnIndex(COLUMN_CONSUMPTION));
             int hours = cursor.getInt(cursor.getColumnIndex(COLUMN_HOURS));
+            long time = cursor.getLong(cursor.getColumnIndex(COLUMN_DATETIME));
             byte[] image = cursor.getBlob(cursor.getColumnIndex(COLUMN_PIC));
 
-            device = new device(consumption, hours, name, brand, image);
+            device = new device(consumption, hours, time, name, brand, image);
             devices.add(device);
         }
         return devices;

@@ -5,13 +5,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by hugo on 11/10/15.
  */
 public class DBHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "parcial2DB.db";
     private static final String TABLE_PRODUCT = "devices";
     private static final String COLUMN_ID = "_id";
@@ -20,10 +21,12 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_CONSUMPTION = "consumption";
     private static final String COLUMN_HOURS = "hours";
     private static final String COLUMN_PIC = "pictures";
-    private static final String COLUMN_TIME = "time";
+//    private static final String COLUMN_TIME = "time";
+//    private static final String COLUMN_DATE = "date";
+    private static final String COLUMN_DATETIME = "datetime";
 
 
-;
+    ;
     private static DBHandler dbHandlerInstace;
 
     public static synchronized DBHandler getInstace(Context context) {
@@ -50,6 +53,7 @@ public class DBHandler extends SQLiteOpenHelper {
                                         COLUMN_CONSUMPTION + " INTEGER, " +
                                         COLUMN_HOURS + " INTEGER, " +
                                         COLUMN_PIC + " BLOB, " +
+                                        COLUMN_DATETIME + " INTEGER " +
                                         ")";
 
         db.execSQL(CREATE_PRODUCTS_TABLE);
@@ -60,8 +64,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
-        onCreate(db);
+        if(oldVersion != newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
+            Log.d("db", "updated database");
+            onCreate(db);
+        }
 
     }
 
