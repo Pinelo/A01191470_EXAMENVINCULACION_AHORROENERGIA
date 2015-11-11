@@ -11,6 +11,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button addBT;
+    Button listBT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         addBT = (Button)findViewById(R.id.addBT);
+        listBT = (Button)findViewById(R.id.listBT);
 
         addBT.setOnClickListener(
 
@@ -26,6 +28,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent addDeviceIntent = new Intent(MainActivity.this, addObjActivity.class);
                         startActivity(addDeviceIntent);
+                    }
+                }
+        );
+
+        listBT.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent deviceListIntent = new Intent(MainActivity.this, deviceList.class);
+                        startActivity(deviceListIntent);
                     }
                 }
         );

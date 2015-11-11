@@ -11,7 +11,7 @@
     <string name="brandString">Marca</string>
     <string name="hourString">Horas</string>
     <string name="brandHint">General Electric</string>
-    <string name="finishForm">Terminar</string>
+    <string name="finishForm">Guardar</string>
     <string name="takePicture">Tomar Foto</string>
 
     <string-array name="electrodomestics">

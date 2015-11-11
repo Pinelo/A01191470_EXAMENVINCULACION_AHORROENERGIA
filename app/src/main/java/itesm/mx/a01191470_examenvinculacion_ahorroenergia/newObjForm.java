@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
@@ -71,7 +72,11 @@ public class newObjForm extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        addDevice(v);
+                        if (brandET.getText().toString() == "" || hoursNP.getValue() == 0) {
+                            Toast.makeText(getApplicationContext(), "Faltan datos por llenar", Toast.LENGTH_LONG).show();
+                        } else {
+                            addDevice(v);
+                        }
                     }
                 }
         );
@@ -79,12 +84,6 @@ public class newObjForm extends AppCompatActivity {
     }
 
     private void addDevice(View v) {
-
-//        private int _consumption;
-//        private int _hours;
-//        private String _name;
-//        private String _brand;
-//        private byte[] _image;
         String deviceBrand = brandET.getText().toString();
         int hours = hoursNP.getValue();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -93,6 +92,7 @@ public class newObjForm extends AppCompatActivity {
 
         device newDevice = new device(deviceConsumption, hours, deviceName, deviceBrand, imageBytes);
         dbo.addDevice(newDevice);
+        Toast.makeText(getApplicationContext(), "Operación Exitosa", Toast.LENGTH_LONG).show();
         finish();
     }
 

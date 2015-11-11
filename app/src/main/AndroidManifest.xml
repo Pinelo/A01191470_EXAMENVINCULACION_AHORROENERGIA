@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="itesm.mx.a01191470_examenvinculacion_ahorroenergia" >
 
-    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -25,6 +27,8 @@
         <activity
             android:name=".newObjForm"
             android:label="@string/title_activity_new_obj_form" >
+        </activity>
+        <activity android:name=".deviceList" >
         </activity>
     </application>
 

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Produt_name"
+            android:id="@+id/ProdNameTV"
+            android:textColor="#001f3f"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/prodBrandTV"
+            android:text="product_brand"
+            android:textColor="#001f3f"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="Fecha"
+            android:id="@+id/dateDT"
+            android:textColor="#001f3f"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/timeDT"
+            android:layout_width="wrap_content"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="Hora"
+            android:textColor="#001f3f"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="W/h"
+            android:id="@+id/WattsPHTV"
+            android:textColor="#001f3f"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="New Text"
+            android:id="@+id/WattsVTV"
+            android:textColor="#001f3f"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="Total"
+            android:textColor="#001f3f"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="total"
+            android:id="@+id/totalWattsTV"
+            android:textColor="#001f3f"/>
+
+    </LinearLayout>
+</LinearLayout>

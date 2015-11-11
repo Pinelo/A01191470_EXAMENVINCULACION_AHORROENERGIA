@@ -2,10 +2,14 @@ package itesm.mx.a01191470_examenvinculacion_ahorroenergia;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hugo on 11/10/15.
@@ -43,5 +47,26 @@ public class DeviceOperations {
         }catch (SQLiteException e) {
             Log.d("tag", "Error while trying to add product to database");
         }
+    }
+
+    public List<device> getAllDevices() {
+        String query = "SELECT * FROM " + TABLE_PRODUCT + " WHERE 1";
+        ArrayList<device> devices = new ArrayList<device>();
+
+        device device = null;
+        db = dbhandler.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        int i;
+        while(cursor.moveToNext()) {
+            String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
+            String brand = cursor.getString(cursor.getColumnIndex(COLUMN_BRAND));
+            int consumption = cursor.getInt(cursor.getColumnIndex(COLUMN_CONSUMPTION));
+            int hours = cursor.getInt(cursor.getColumnIndex(COLUMN_HOURS));
+            byte[] image = cursor.getBlob(cursor.getColumnIndex(COLUMN_PIC));
+
+            device = new device(consumption, hours, name, brand, image);
+            devices.add(device);
+        }
+        return devices;
     }
 }
