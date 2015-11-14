@@ -1,5 +1,6 @@
 package itesm.mx.a01191470_examenvinculacion_ahorroenergia;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -33,6 +34,18 @@ public class deviceList extends AppCompatActivity {
         selectionListAdapter = new DeviceAdapter(getApplicationContext(), devices);
         devicesLV.setAdapter(selectionListAdapter);
         registerForContextMenu(devicesLV);
+
+        devicesLV.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(deviceList.this, DeviceInfoActivity.class);
+
+                        intent.putExtra("pos", position);
+                        startActivity(intent);
+                    }
+                }
+        );
     }
 
     @Override
