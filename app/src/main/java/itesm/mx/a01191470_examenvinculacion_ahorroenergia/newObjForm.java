@@ -23,6 +23,8 @@ public class newObjForm extends AppCompatActivity {
     int deviceConsumption;
     String deviceName;
     Bitmap photo;
+    boolean pic = false;
+
 
     TextView nameTv;
     TextView brandET;
@@ -72,7 +74,7 @@ public class newObjForm extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (brandET.getText().toString() == "" || hoursNP.getValue() == 0) {
+                        if (brandET.getText().toString() == "" || hoursNP.getValue() == 0 || !pic) {
                             Toast.makeText(getApplicationContext(), "Faltan datos por llenar", Toast.LENGTH_LONG).show();
                         } else {
                             addDevice(v);
@@ -114,6 +116,7 @@ public class newObjForm extends AppCompatActivity {
             Bundle extras = data.getExtras();
             photo = (Bitmap)extras.get("data");
             cameraIV.setImageBitmap(photo);
+            pic = true;
         }
 
     }

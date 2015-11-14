@@ -8,7 +8,10 @@ import android.database.sqlite.SQLiteException;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -71,5 +74,35 @@ public class DeviceOperations {
             devices.add(device);
         }
         return devices;
+    }
+
+    public List<device> findDevicesByDate(int month, int day) {
+        List<device> devices = getAllDevices();
+        List<device> filterDevices = new ArrayList<>();
+        int i;
+        device device;
+
+        long milliseconds;
+        Date resultdate;
+
+        Calendar calendar = Calendar.getInstance();
+
+
+        for(i = 0; i < devices.size(); i++) {
+            device = devices.get(i);
+            milliseconds = device.get_time();
+//            resultdate = new Date(milliseconds);
+            calendar.setTimeInMillis(milliseconds);
+
+            int month1 = calendar.get(Calendar.MONTH) + 1;
+            int day1 = calendar.get(Calendar.DAY_OF_MONTH);
+
+            if (month == month1 && day == day1) {
+                filterDevices.add(device);
+            }
+
+
+        }
+        return filterDevices;
     }
 }

@@ -23,8 +23,6 @@ public class deviceList extends AppCompatActivity {
         devicesLV = (ListView)findViewById(R.id.devicesLV);
 
         final DeviceAdapter selectionListAdapter = new DeviceAdapter(getApplicationContext(), devices);
-
-
         devicesLV.setAdapter(selectionListAdapter);
     }
 }

@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button addBT;
     Button listBT;
+    Button reportBT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         addBT = (Button)findViewById(R.id.addBT);
         listBT = (Button)findViewById(R.id.listBT);
+        reportBT = (Button)findViewById(R.id.reportBT);
 
         addBT.setOnClickListener(
 
@@ -40,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent deviceListIntent = new Intent(MainActivity.this, deviceList.class);
                         startActivity(deviceListIntent);
+                    }
+                }
+        );
+
+        reportBT.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent reportIntent = new Intent(MainActivity.this, report_activity.class);
+                        startActivity(reportIntent);
                     }
                 }
         );

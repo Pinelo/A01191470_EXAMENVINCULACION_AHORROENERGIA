@@ -13,6 +13,7 @@
     <string name="brandHint">General Electric</string>
     <string name="finishForm">Guardar</string>
     <string name="takePicture">Tomar Foto</string>
+    <string name="generateReport">Generar</string>
 
     <string-array name="electrodomestics">
         <item>Reproductor de DVDs</item>
