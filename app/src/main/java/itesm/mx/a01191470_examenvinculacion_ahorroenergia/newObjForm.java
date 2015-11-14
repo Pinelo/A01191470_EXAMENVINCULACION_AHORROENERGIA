@@ -32,6 +32,7 @@ public class newObjForm extends AppCompatActivity {
     NumberPicker hoursNP;
     Button takePicBT;
     Button finishBT;
+    Button backBT;
     DeviceOperations dbo;
 
     static final int REQUEST_IMAGE_CAPTURE= 1;
@@ -50,6 +51,7 @@ public class newObjForm extends AppCompatActivity {
         cameraIV = (ImageView)findViewById(R.id.cameraIV);
         finishBT = (Button)findViewById(R.id.addObjFinishBT);
         takePicBT = (Button)findViewById(R.id.picBT);
+        backBT = (Button)findViewById(R.id.addObjBackBT);
         hoursNP = (NumberPicker)findViewById(R.id.hoursNP);
 
         hoursNP.setMaxValue(1000);
@@ -78,7 +80,18 @@ public class newObjForm extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Faltan datos por llenar", Toast.LENGTH_LONG).show();
                         } else {
                             addDevice(v);
+                            Toast.makeText(getApplicationContext(), "Operación Exitosa", Toast.LENGTH_LONG).show();
                         }
+                    }
+                }
+        );
+
+        backBT.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(), "Operación Cancelada", Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 }
         );

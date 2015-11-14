@@ -28,6 +28,16 @@ public class device {
         this._image = _image;
     }
 
+    public device(int _id, int _consumption, int _hours, long _time, String _name, String _brand, byte[] _image) {
+        this._id = _id;
+        this._consumption = _consumption;
+        this._hours = _hours;
+        this._time = _time;
+        this._name = _name;
+        this._brand = _brand;
+        this._image = _image;
+    }
+
     public long get_time() {
         return _time;
     }

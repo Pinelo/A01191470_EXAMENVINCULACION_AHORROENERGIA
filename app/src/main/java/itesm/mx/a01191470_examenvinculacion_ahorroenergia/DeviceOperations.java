@@ -35,6 +35,28 @@ public class DeviceOperations {
         dbhandler = DBHandler.getInstace(context);
     }
 
+    public boolean deleteDevice(String deviceId){
+        boolean result = false;
+
+        db = dbhandler.getWritableDatabase();
+        String query = "Select * FROM " + TABLE_PRODUCT +
+                " WHERE " + COLUMN_ID + " = \"" + deviceId+ "\"";
+
+        Cursor cursor = db.rawQuery(query, null);
+        try {
+            if (cursor.moveToFirst()) {
+                int id = Integer.parseInt(cursor.getString(0));
+                db.delete(TABLE_PRODUCT, COLUMN_ID + " = ?", new String[] {String.valueOf(id)});
+                cursor.close();
+                result = true;
+            }
+        } catch (SQLiteException e) {
+            Log.d("tag", "Error while trying to delete a product ");
+        }
+        db.close();
+        return result;
+    }
+
     public void addDevice(device device) {
         db = dbhandler.getWritableDatabase();
         try{
@@ -65,12 +87,13 @@ public class DeviceOperations {
         while(cursor.moveToNext()) {
             String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
             String brand = cursor.getString(cursor.getColumnIndex(COLUMN_BRAND));
+            int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
             int consumption = cursor.getInt(cursor.getColumnIndex(COLUMN_CONSUMPTION));
             int hours = cursor.getInt(cursor.getColumnIndex(COLUMN_HOURS));
             long time = cursor.getLong(cursor.getColumnIndex(COLUMN_DATETIME));
             byte[] image = cursor.getBlob(cursor.getColumnIndex(COLUMN_PIC));
 
-            device = new device(consumption, hours, time, name, brand, image);
+            device = new device(id, consumption, hours, time, name, brand, image);
             devices.add(device);
         }
         return devices;

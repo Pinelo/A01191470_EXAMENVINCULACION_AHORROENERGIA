@@ -95,6 +95,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Back"
+            android:id="@+id/addObjBackBT"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/takePicture"
             android:id="@+id/picBT"
             android:layout_gravity="end" />

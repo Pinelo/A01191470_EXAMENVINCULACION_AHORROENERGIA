@@ -46,7 +46,7 @@ public class RepListAdapter extends ArrayAdapter{
         View row = rowInflater.inflate(R.layout.report_device_row, parent, false);
 
         TextView deviceNameTV = (TextView)row.findViewById(R.id.repProdNameTV);
-        TextView deviceBrandTV = (TextView)row.findViewById(R.id.repprodBrandTV);
+//        TextView deviceBrandTV = (TextView)row.findViewById(R.id.repprodBrandTV);
 //        TextView dateTV = (TextView)row.findViewById(R.id.repHoursTV);
         TextView hoursTV = (TextView)row.findViewById(R.id.repHoursVTV);
         TextView wattsPHTV = (TextView)row.findViewById(R.id.repWattsVTV);
@@ -57,7 +57,7 @@ public class RepListAdapter extends ArrayAdapter{
         device device = devices.get(position);
 //        Log.d("CREATION", String.valueOf(articulo.getNumSerie()));
         deviceNameTV.setText(device.get_name());
-        deviceBrandTV.setText(device.get_brand());
+//        deviceBrandTV.setText(device.get_brand());
         wattsPHTV.setText(Integer.toString(device.get_consumption()));
         hoursTV.setText(Integer.toString(device.get_hours()));
         String total_watts = Integer.toString((device.get_consumption() * device.get_hours()));
